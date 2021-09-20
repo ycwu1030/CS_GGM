@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8)
+project(CSV_GGM CXX)
+# In a normal application you would do:
+SET(MULTINEST_ROOT "/Users/ycwu/Workingspace/Utilities/MultiNest_GitHub/MultiNest_v3.11_CMake/multinest")
+SET(MULTINEST_USE_MPI ON)
+SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules;${CMAKE_MODULE_PATH}")
+MESSAGE(STATUS "MODULE PATH:${CMAKE_MODULE_PATH}")
+FIND_PACKAGE(MULTINEST REQUIRED)
+INCLUDE_DIRECTORIES(${MULTINEST_INCLUDE_DIRS})
+SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+
+add_executable(CSVMODEL SM_GAC_SEXPEN.cc CSV_SEXPEN.cc)
+target_link_libraries(CSVMODEL ${MULTINEST_LIBRARIES})
+# Set install directory
+# INSTALL(TARGETS CSVMODEL DESTINATION bin)
